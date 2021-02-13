@@ -4,17 +4,22 @@ import './bootstrap.min.css' // https://bootswatch.com/
 import './index.css'
 import Container from 'react-bootstrap/Container'
 import Home from './pages/Home'
+import ProductDetail from './pages/ProductDetail'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const App = () => {
 	return (
 		<div>
-			<Header />
-			<Container>
-				<main className='py-3'>
-					<Home />
-				</main>
-			</Container>
-			<Footer />
+			<Router>
+				<Header />
+				<Container>
+					<main className='py-3'>
+						<Route path='/' component={Home} exact />
+						<Route path='/product/:id' component={ProductDetail} />
+					</main>
+				</Container>
+				<Footer />
+			</Router>
 		</div>
 	)
 }
