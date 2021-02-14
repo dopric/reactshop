@@ -1,16 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+import axios from 'axios'
+
 
 const ProductDetail = (props) => {
-	const product = products.find((e) => e._id === props.match.params.id)
+	const [product, setProduct] = useState()
+	useEffect(()=>{
+		const getProduct = async ()=>{
+			const {data} = await axios.get('/api/products/' + props.match.params.id)
+		
+			setProduct(data)
+		}
+
+		getProduct()
+	}, null)
+	
 	return (
 		<>
 		<Link className='btn btn-dark my-3' to='/'>
 			Go back
 		</Link>
+		{product &&
 		<Row>
 			<Col md={6}>
 				<Image src={product.image} alt={product.name} fluid></Image>
@@ -63,6 +75,7 @@ const ProductDetail = (props) => {
 				</Card>
 			</Col>
 		</Row>
+		}
 		</>
 	)
 }
