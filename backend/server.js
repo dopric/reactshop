@@ -11,12 +11,6 @@ if (confResult.error) {
 }
 const PORT = process.env.PORT || 5000
 
-const user = UserModel()
-user.name = 'dragan Opric'
-user.isAdmin = true
-console.log('User')
-console.log(user)
-
 const app = express()
 const connect = async () => {
 	await connectDb()
