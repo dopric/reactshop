@@ -19,6 +19,6 @@ const orderSchema = new mongoose.Schema({
 	status: { type: String, required: true, default: 'IN PROCESS' }
 })
 
-const Order = mongoose.model(orderSchema)
+const OrderModel = mongoose.model('Order', orderSchema)
 
-export default Order
+export default OrderModel
